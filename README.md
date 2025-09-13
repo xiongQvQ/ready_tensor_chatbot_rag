@@ -34,9 +34,18 @@ documents/
 ```
 
 ### 4. Run the Chatbot
+
+**Option 1: Clean startup (recommended)**
+```bash
+python start_chatbot.py
+```
+
+**Option 2: Direct run**
 ```bash
 python rt_lc_chatbot.py
 ```
+
+> Note: The clean startup script suppresses ChromaDB initialization messages for a better user experience.
 
 ## Usage
 

@@ -102,7 +102,7 @@ Thumbs.db
 .env.staging
 config/secrets.json
 secrets/
-
+.claude/
 # Documents (optional - uncomment if you don't want to share your documents)
 # documents/
 # *.txt

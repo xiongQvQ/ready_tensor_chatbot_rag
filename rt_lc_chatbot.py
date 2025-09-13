@@ -13,24 +13,40 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Disable ChromaDB telemetry to avoid errors
+# Disable ChromaDB telemetry and warnings completely
 os.environ["ANONYMIZED_TELEMETRY"] = "false"
-os.environ["CHROMA_SERVER_NOFILE"] = "1"
+os.environ["CHROMA_CLIENT_AUTH_PROVIDER"] = ""
+os.environ["CHROMA_SERVER_AUTH_PROVIDER"] = ""
 
-# Suppress ChromaDB warnings
+# Suppress all ChromaDB warnings and errors
 import warnings
-warnings.filterwarnings("ignore", category=UserWarning, module="chromadb")
+import logging
+warnings.filterwarnings("ignore")
+logging.getLogger("chromadb").setLevel(logging.ERROR)
+logging.getLogger("chromadb.telemetry").setLevel(logging.CRITICAL)
 
-# Initialize ChromaDB with settings to suppress telemetry
+# Initialize ChromaDB with all telemetry disabled
 try:
-    # Try to disable telemetry at client level
+    # Create settings with telemetry completely disabled
+    settings = chromadb.Settings(
+        anonymized_telemetry=False,
+        allow_reset=True,
+        is_persistent=True
+    )
     client = chromadb.PersistentClient(
         path=os.getenv('CHROMA_DB_PATH', './research_db'),
-        settings=chromadb.Settings(anonymized_telemetry=False)
+        settings=settings
     )
-except:
-    # Fallback to basic client
-    client = chromadb.PersistentClient(path=os.getenv('CHROMA_DB_PATH', './research_db'))
+except Exception:
+    # Fallback to basic client with minimal settings
+    try:
+        client = chromadb.PersistentClient(
+            path=os.getenv('CHROMA_DB_PATH', './research_db')
+        )
+    except Exception as e:
+        print(f"⚠️ ChromaDB initialization warning (can be ignored): {e}")
+        # Create client anyway
+        client = chromadb.PersistentClient(path=os.getenv('CHROMA_DB_PATH', './research_db'))
 collection = client.get_or_create_collection(
     name="ml_publications",
     metadata={"hnsw:space": "cosine"}
@@ -304,7 +320,7 @@ def main():
         query = input("Your question: ").strip()
         
         if query.lower() in ['quit', 'exit', 'q']:
-            print("Goodbye!")
+            print("👋 Goodbye!")
             break
         
         if not query:

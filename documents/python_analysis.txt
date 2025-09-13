@@ -1,0 +1,79 @@
+标题: Pandas (software)
+URL: https://en.wikipedia.org/wiki/Pandas_(software)
+==================================================
+
+Pandas (styled as pandas) is a software library written for the Python programming language for data manipulation and analysis. In particular, it offers data structures and operations for manipulating numerical tables and time series. It is free software released under the three-clause BSD license. The name is derived from the term "panel data", an econometrics term for data sets that include observations over multiple time periods for the same individuals, as well as a play on the phrase "Python data analysis". Wes McKinney started building what would become Pandas at AQR Capital while he was a researcher there from 2007 to 2010.
+The development of Pandas introduced into Python many comparable features of working with DataFrames that were established in the R programming language. The library is built upon another library, NumPy.
+
+
+== History ==
+Developer Wes McKinney started working on Pandas in 2008 while at AQR Capital Management out of the need for a high performance, flexible tool to perform quantitative analysis on financial data. Before leaving AQR, he was able to convince management to allow him to open source the library.
+Another AQR employee, Chang She, joined the effort in 2012 as the second major contributor to the library.
+In 2015, Pandas signed on as a fiscally sponsored project of NumFOCUS, a 501(c)(3) nonprofit charity in the United States.
+
+
+== Data model ==
+Pandas is built around data structures called Series and DataFrames. Data for these collections can be imported from various file formats such as comma-separated values, JSON, Parquet, SQL database tables or queries, and Microsoft Excel.
+A Series is a 1-dimensional data structure built on top of NumPy's array. Unlike in NumPy, each data point has an associated label. The collection of these labels is called an index. Series can be used arithmetically, as in the statement series_3 = series_1 + series_2: this will align data points with corresponding index values in series_1 and series_2, then add them together to produce new values in series_3. A DataFrame is a 2-dimensional data structure of rows and columns, similar to a spreadsheet, and analogous to a Python dictionary mapping column names (keys) to Series (values), with each Series sharing an index. DataFrames can be concatenated together or "merged" on columns or indices in a manner similar to joins in SQL. Pandas implements a subset of relational algebra, and supports one-to-one, many-to-one, and many-to-many joins.
+Users can transform or summarize data by applying arbitrary functions. Since Pandas is built on top of NumPy, all NumPy functions work on Series and DataFrames as well. Pandas also includes built-in operations for arithmetic, string manipulation, and summary statistics such as mean, median, and standard deviation. These built-in functions are designed to handle missing data, usually represented by the floating-point value NaN.
+Subsets of data can be selected by column name, index, or Boolean expressions. For example, df[df['col1'] > 5] will return all rows in the DataFrame df for which the value of the column col1 exceeds 5. Data can be grouped together by a column value, as in df['col1'].groupby(df['col2']), or by a function which is applied to the index. For example, df.groupby(lambda i: i % 2) groups data by whether the index is even. 
+Pandas includes support for time series, such as the ability to interpolate values  and filter using a range of timestamps (e.g. data['1/1/2023':'2/2/2023'] will return all dates between January 1st and February 2nd). Pandas represents missing time series data using a special NaT (Not a Timestamp) object, instead of the NaN value it uses elsewhere.
+
+
+=== Indices ===
+By default, a Pandas index is a series of integers ascending from 0, similar to the indices of Python arrays. However, indices can use any NumPy data type, including floating point, timestamps, or strings.
+Pandas' syntax for mapping index values to relevant data is the same syntax Python uses to map dictionary keys to values. For example, if s is a Series, s['a'] will return the data point at index a. Unlike dictionary keys, index values are not guaranteed to be unique. If a Series uses the index value a for multiple data points, then s['a'] will instead return a new Series containing all matching values. A DataFrame's column names are stored and implemented identically to an index. As such, a DataFrame can be thought of as having two indices: one column-based and one row-based. Because column names are stored as an index, these are not required to be unique.
+If data is a Series, then data['a'] returns all values with the index value of a. However, if data is a DataFrame, then data['a'] returns all values in the column(s) named a. To avoid this ambiguity, Pandas supports the syntax data.loc['a'] as an alternative way to filter using the index. Pandas also supports the syntax data.iloc[n], which always takes an integer n and returns the nth value, counting from 0. This allows a user to act as though the index is an array-like sequence of integers, regardless of how it is actually defined.
+Pandas supports hierarchical indices with multiple values per data point. An index with this structure, called a "MultiIndex", allows a single DataFrame to represent multiple dimensions, similar to a pivot table in Microsoft Excel. Each level of a MultiIndex can be given a unique name. In practice, data with more than 2 dimensions is often represented using DataFrames with hierarchical indices, instead of the higher-dimension Panel and Panel4D data structures
+
+
+== Criticisms ==
+Pandas has been criticized for its inefficiency. The entire dataset must be loaded in RAM, and the library does not optimize query plans or support parallel computing across multiple cores. Wes McKinney, the creator of Pandas, has recommended Apache Arrow as an alternative to address these performance concerns and other limitations. Otherwise, he says about memory, "my rule of thumb for pandas is that you should have 5 to 10 times as much RAM as the size of your dataset".
+
+
+== Examples ==
+Pandas is customarily imported as pd.
+
+
+=== Resampling ===
+Create example time series data, daily:
+
+2019-06-01    0.548814
+2019-06-02    0.715189
+2019-06-03    0.602763
+                ...   
+2019-06-28    0.944669
+2019-06-29    0.521848
+2019-06-30    0.414662
+Freq: D, Length: 30, dtype: float64
+
+Resample to weekly ending Monday:
+
+2019-06-03    1.866766
+2019-06-10    4.290897
+2019-06-17    2.992645
+2019-06-24    5.500574
+2019-07-01    2.782728
+Freq: W-MON, dtype: float64
+
+
+== See also ==
+
+matplotlib
+Dask
+SciPy
+Polars
+dplyr
+scikit-learn
+List of numerical analysis software
+
+
+== References ==
+
+
+== Further reading ==
+McKinney, Wes (2017). Python for Data Analysis : Data Wrangling with Pandas, NumPy, and IPython (2nd ed.). Sebastopol: O'Reilly. ISBN 978-1-4919-5766-0.
+Molin, Stefanie (2019). Hands-On Data Analysis with Pandas: Efficiently perform data collection, wrangling, analysis, and visualization using Python. Packt. ISBN 978-1-7896-1532-6.
+Chen, Daniel Y. (2018). Pandas for Everyone : Python Data Analysis. Boston: Addison-Wesley. ISBN 978-0-13-454693-3.
+VanderPlas, Jake (2016). "Data Manipulations with Pandas". Python Data Science Handbook: Essential Tools for Working with Data. O'Reilly. pp. 97–216. ISBN 978-1-4919-1205-8.
+Pathak, Chankey (2018). Pandas Cookbook. pp. 1–8.

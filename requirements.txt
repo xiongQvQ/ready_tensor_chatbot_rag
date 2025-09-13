@@ -1,0 +1,15 @@
+# Core dependencies
+chromadb>=0.4.22,<0.5.0
+langchain>=0.2.0,<0.3.0
+langchain-community>=0.2.0,<0.3.0
+langchain-huggingface>=0.0.3,<1.0.0
+langchain-groq>=0.1.0,<1.0.0
+langchain-text-splitters>=0.2.0,<0.3.0
+
+# Machine Learning and Embeddings
+torch>=2.0.0
+sentence-transformers>=2.2.2
+transformers>=4.30.0
+
+# Environment and utilities
+python-dotenv==1.0.0

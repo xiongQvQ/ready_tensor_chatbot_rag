@@ -1,5 +1,7 @@
 # RAG-Powered Research Knowledge Assistant
 
+![RAG System Banner](img/RAG-Powered%20Research%20Knowledge%20Assistant.png)
+
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![LangChain](https://img.shields.io/badge/LangChain-0.2.0-orange.svg)](https://python.langchain.com/)

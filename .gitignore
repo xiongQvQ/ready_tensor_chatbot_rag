@@ -103,6 +103,8 @@ Thumbs.db
 config/secrets.json
 secrets/
 .claude/
+CLAUDE.md
+
 # Documents (optional - uncomment if you don't want to share your documents)
 # documents/
 # *.txt

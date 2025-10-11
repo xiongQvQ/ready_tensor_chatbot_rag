@@ -1,6 +1,14 @@
-# Research Assistant Chatbot
+# RAG-Powered Research Knowledge Assistant
 
-A LangChain-powered chatbot that can answer questions about your research documents using ChromaDB vector database and Groq's LLaMA model.
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![LangChain](https://img.shields.io/badge/LangChain-0.2.0-orange.svg)](https://python.langchain.com/)
+[![ChromaDB](https://img.shields.io/badge/ChromaDB-0.4.22-purple.svg)](https://www.trychroma.com/)
+[![Groq](https://img.shields.io/badge/Groq-LLaMA-red.svg)](https://groq.com/)
+
+> **Intelligent Q&A System for Machine Learning Research Documents**
+
+A production-ready LangChain-powered chatbot that answers questions about your research documents using semantic search with ChromaDB vector database and Groq's LLaMA model. Built for researchers, students, and ML practitioners who need instant access to knowledge from their document collections.
 
 ## Features
 
@@ -9,6 +17,41 @@ A LangChain-powered chatbot that can answer questions about your research docume
 - 💬 Interactive chat interface
 - 🎯 Context-aware responses based on your documents
 - ⚡ Fast retrieval using ChromaDB vector database
+- 🔒 Production-ready with comprehensive error handling
+
+## 📚 Document Domain
+
+### Supported Document Types
+
+This system is specifically designed and optimized for:
+
+- **Primary Focus**: Academic papers, research publications, technical documentation
+- **Domain**: Machine Learning, Artificial Intelligence, Data Science, Computer Science
+- **Format**: Text files (.txt) with extensibility to PDF, DOCX
+- **Content Characteristics**: Long-form technical content with structured information
+
+### Best Suited For
+
+✅ **Technical and academic research papers** - ML/AI research, conference papers, journal articles
+✅ **Machine learning literature** - Papers on algorithms, architectures, methodologies
+✅ **Technical documentation** - API docs, implementation guides, technical whitepapers
+✅ **Educational materials** - Course notes, textbooks, tutorial content
+✅ **Knowledge base** - Company documentation, research team knowledge repositories
+
+### Not Recommended For
+
+❌ Creative writing or fiction
+❌ News articles or blog posts
+❌ Social media content
+❌ Unstructured conversational text
+❌ Real-time or time-sensitive information
+
+### Document Characteristics
+
+- **Length**: Works best with documents > 500 words
+- **Structure**: Benefits from well-organized content with clear sections
+- **Language**: Optimized for English technical content
+- **Format**: Currently supports .txt files (see roadmap for PDF/DOCX support)
 
 ## Setup
 
@@ -106,6 +149,21 @@ Edit `.env` file to customize:
 - **Sentence Transformers**: Text embedding models
 - **PyTorch**: Deep learning framework
 
-## License
+## 📄 License
 
-MIT License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with [LangChain](https://python.langchain.com/) for LLM orchestration
+- Powered by [ChromaDB](https://www.trychroma.com/) for vector storage
+- Uses [Groq](https://groq.com/) for fast LLM inference
+- Embeddings from [HuggingFace Sentence Transformers](https://huggingface.co/sentence-transformers)
+
+## 📬 Contact & Support
+
+For issues, questions, or contributions, please visit the project repository or open an issue.
+
+---
+
+**Built for the AI research community** 🚀
